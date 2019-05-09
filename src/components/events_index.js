@@ -52,17 +52,15 @@ class EventsIndex extends Component {
             adjustForCheckbox={false}
         >
           <TableRow>
-              <TableHeaderColumn>ID</TableHeaderColumn>
+              <TableHeaderColumn>項番</TableHeaderColumn>
               <TableHeaderColumn>Title</TableHeaderColumn>
               <TableHeaderColumn>Body</TableHeaderColumn>
           </TableRow>
          </TableHeader>
-         <TableBody displayRowCheckbox={false}>
+         <TableBody displayRowCheckbox={true}>
             {this.renderEvents()}
          </TableBody>
        </Table>
-
-      <Link to="/events/new">New Event</Link>
       </React.Fragment>
      )
   }
@@ -72,3 +70,7 @@ const mapStateToProps = state => ({ events: state.events })
 const mapDispatchToProps = ({ readEvents })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventsIndex)
+
+//connect は Component を再定義している。mapDispatchToProps で propsと繋げて再定義している。
+//connect は subscribe コマンドの役割を果たしている。何故か。connectがあれば、action等、propsに変化があれば
+//  Componentが再定義されて、再レンダリングされる。
